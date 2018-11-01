@@ -18,16 +18,16 @@ def loadDataSet():
     classVec = [0,1,1,1,0,0,0,0,0,0,1,1,0,1]    #1 is spam, 0 not
     return postingList,classVec
                  
-def createVocabList(dataSet):
+def createVocabList(dataSet):    ### dataset 안에 있는 document들을 원소로 하는 set 내보내주는 함수
     vocabSet = set([])  #create empty set
     for document in dataSet:
         vocabSet = vocabSet | set(document) #union of the two sets
     return list(vocabSet)
 
 def setOfWords2Vec(vocabList, inputSet):
-    returnVec = [0]*len(vocabList)
+    returnVec = [0]*len(vocabList)  ### vocabList과 같은 길이의 벡터를 생성하고, 모두 0으로 채운다
     for word in inputSet:
-        if word in vocabList:
+        if word in vocabList:   ### inputSet에 있는 단어가 vocabList에 있는 단어이면 값을 1로 설정 
             returnVec[vocabList.index(word)] = 1
         else: print "the word: %s is not in my Vocabulary!" % word
     return returnVec
